@@ -113,33 +113,7 @@ df[num_list] = StandardScaler().fit_transform(df[num_list])
 print(df)
 
 
-# ## We need to check for some cat features if they have some degree of impact in the result 
-
-# In[9]:
-
-
-## EDA Analysis
-
-#build a dummy dtst just for visualization
-df_extra = pd.concat([df,y], axis = 1)
-print(df_extra)
-
-
-# In[10]:
-
-
-fig, axs = plt.subplots(1, 5, sharey=True)
-sns.barplot(ax=axs[0], x = 'cp', y='output', data=df_extra)
-sns.barplot(ax=axs[1], x = 'restecg', y='output', data=df_extra)
-sns.barplot(ax=axs[2], x = 'slp', y='output', data=df_extra)
-sns.barplot(ax=axs[3], x = 'caa', y='output', data=df_extra)
-sns.barplot(ax=axs[4], x = 'thall', y='output', data=df_extra)
-plt.show()
-
-print('Observing the above plot we can not clearly see a correlation between the number of cases and the order of the categorical features. Therefore we will convert this categrical variables into one-hot encoding.')
-
-
-# In[11]:
+# Convert categorical fatures into One-Hot encoding
 
 
 df = pd.get_dummies(df, columns = cat_list, drop_first=True)
